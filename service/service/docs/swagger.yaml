@@ -1,0 +1,810 @@
+basePath: /
+definitions:
+  ErrorResponse:
+    properties:
+      message:
+        description: Message about the error
+        example: Operation failed
+        type: string
+    type: object
+  FilteredProfile:
+    properties:
+      about:
+        description: Description of a user
+        example: Я люблю бегать
+        type: string
+      age:
+        description: Date of birth of a user
+        example: 20
+        type: integer
+      height:
+        description: Height of a user
+        example: 180
+        type: integer
+      id_level:
+        description: Level id. Can be 1 - junior, 2 - middle, 3 - senior
+        example: 1
+        type: integer
+      id_user:
+        description: Id of a user
+        example: 709786
+        type: integer
+      location:
+        description: Preferred location (metro station)
+        example: Петроградская
+        type: string
+      name:
+        description: First name of a user
+        example: Андрей
+        type: string
+      person_sports:
+        description: Kinds of sports of a user
+        example:
+        - волейбол
+        items:
+          type: string
+        type: array
+      second_name:
+        description: Second name of a user
+        example: Попов
+        type: string
+      sex:
+        description: Sex of a user
+        example: male
+        type: string
+      weight:
+        description: Weight of a user
+        example: 80
+        type: integer
+    type: object
+  LoginResponse:
+    properties:
+      access_token:
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzYyMjUxNDcsImp0aSI6IjkxMzQ1NzQ5NzUifQ.hiQUF6DNwoOcYsBvo1-aRVEQShzRMvGYReHWKg6QY4I
+        type: string
+      id_user:
+        description: Token to access protected pages
+        example: 9338554
+        type: integer
+      username:
+        example: andrey
+        type: string
+    type: object
+  UserLoginParams:
+    properties:
+      password:
+        example: Password123
+        type: string
+      username:
+        example: andrey@gmail.com
+        type: string
+    type: object
+  UserProfile:
+    properties:
+      about:
+        description: Description of a user
+        example: Я люблю бегать
+        type: string
+      date_of_birth:
+        description: Date of birth of a user
+        example: "2000-01-01T00:00:00Z"
+        type: string
+      email:
+        description: User's e-mail
+        example: andrey@gmail.com
+        type: string
+      height:
+        description: Height of a user
+        example: 180
+        type: integer
+      id_level:
+        description: Level id. Can be 1 - junior, 2 - middle, 3 - senior
+        example: 1
+        type: integer
+      id_user:
+        description: Id of a user
+        example: 709786
+        type: integer
+      location:
+        description: Preferred location (metro station)
+        example: Петроградская
+        type: string
+      name:
+        description: First name of a user
+        example: Андрей
+        type: string
+      second_name:
+        description: Second name of a user
+        example: Попов
+        type: string
+      sex:
+        description: Sex of a user
+        example: male
+        type: string
+      sport:
+        description: User's kinds of sport
+        example:
+        - волейбол
+        items:
+          type: string
+        type: array
+      weight:
+        description: Weight of a user
+        example: 80
+        type: integer
+    type: object
+  UserProfileFilterParams:
+    properties:
+      age_from:
+        description: Minimum age of a user  (if -1, then not specified)
+        example: 20
+        type: integer
+      age_to:
+        description: Maximum age of a user  (if -1, then not specified)
+        example: 40
+        type: integer
+      id_level:
+        description: Level ids
+        example:
+        - 1
+        items:
+          type: integer
+        type: array
+      location:
+        description: Preferred location (metro station)
+        example:
+        - Петроградская
+        items:
+          type: string
+        type: array
+      sex:
+        description: Sex of a user  (if "", then not specified)
+        example: male
+        type: string
+      sport:
+        description: Kinds of sport
+        example:
+        - волейбол
+        items:
+          type: string
+        type: array
+      weight_from:
+        description: Minimum weight of a user  (if -1, then not specified)
+        example: 80
+        type: integer
+      weight_to:
+        description: Maximum weight of a user (if -1, then not specified)
+        example: 90
+        type: integer
+    type: object
+  handlers.Message:
+    properties:
+      content:
+        example: Hello!
+        type: string
+      created_at:
+        example: "2021-11-29T00:16:01.367333+03:00"
+        type: string
+      id_from:
+        example: 321
+        type: integer
+      id_to:
+        example: 123
+        type: integer
+      type:
+        example: personal
+        type: string
+    type: object
+  handlers.MessagesFilter:
+    properties:
+      created_after:
+        type: string
+      id_users:
+        items:
+          type: integer
+        type: array
+    type: object
+  handlers.Request:
+    properties:
+      created_at:
+        example: "2021-11-29T00:16:01.367333+03:00"
+        type: string
+      id_from:
+        example: 321
+        type: integer
+      id_to:
+        example: 123
+        type: integer
+      seen:
+        example: false
+        type: boolean
+      status:
+        example: declined
+        type: string
+      type:
+        example: personal
+        type: string
+    type: object
+  training.GroupTraining:
+    properties:
+      comment:
+        type: string
+      fee:
+        type: integer
+      id_level:
+        type: integer
+      id_training:
+        type: integer
+      kind:
+        type: string
+      location:
+        type: string
+      meet_date:
+        type: string
+      owner:
+        type: integer
+      participants_ids:
+        items:
+          type: integer
+        type: array
+      sport:
+        type: string
+      training_duration:
+        type: string
+    type: object
+  training.GroupTrainingFilter:
+    properties:
+      id_level:
+        items:
+          type: integer
+        type: array
+      location:
+        items:
+          type: string
+        type: array
+      sport:
+        items:
+          type: string
+        type: array
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  title: SB API
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      operationId: authLogin
+      parameters:
+      - description: The body to login a user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/UserLoginParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Login a user
+      tags:
+      - Auth
+  /auth/logout:
+    post:
+      operationId: authLogout
+      responses:
+        "200":
+          description: Logout successfully
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Logout a user
+      tags:
+      - Auth
+  /auth/refresh:
+    post:
+      operationId: authRefreshToken
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Refresh access token
+      tags:
+      - Auth
+  /auth/signup:
+    post:
+      consumes:
+      - application/json
+      operationId: authSignup
+      parameters:
+      - description: The body to sign up a user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/UserLoginParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Sign up a user
+      tags:
+      - Auth
+  /messenger/dialogs:
+    get:
+      operationId: getDialogs
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handlers.Request'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get user's dialogs and requests
+      tags:
+      - Messenger
+  /messenger/messages:
+    get:
+      operationId: getMessages
+      parameters:
+      - description: filter to display messages (id_users have to contain to ID, if
+          created_after not defined - considered as current moment)
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.MessagesFilter'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handlers.Message'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get dialog
+      tags:
+      - Messenger
+  /messenger/request/reply:
+    put:
+      operationId: replyToRequest
+      parameters:
+      - description: 'The body of a request - status : declined/accepted'
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Accept or decline friendship or joining a group training request
+      tags:
+      - Messenger
+  /messenger/request/seen:
+    put:
+      operationId: seenRequestReply
+      parameters:
+      - description: 'The body of a request - seen : true'
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Mark response to a request as seen
+      tags:
+      - Messenger
+  /training:
+    get:
+      operationId: getFilteredTrainings
+      parameters:
+      - description: The body to filter group trainings
+        in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/training.GroupTrainingFilter'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/training.GroupTraining'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get group trainings filtered by provided parameters
+      tags:
+      - Training
+    post:
+      operationId: addGroupTraining
+      parameters:
+      - description: The body to add a group training
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/training.GroupTraining'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Add group training
+      tags:
+      - Training
+  /training/{id}:
+    delete:
+      operationId: deleteGroupTraining
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Delete group training
+      tags:
+      - Training
+    get:
+      operationId: getTrainingByID
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get training by id
+      tags:
+      - Training
+    put:
+      operationId: updateGroupTraining
+      parameters:
+      - description: The body to update a group training
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/training.GroupTraining'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Update group training
+      tags:
+      - Training
+  /training/profiles:
+    get:
+      operationId: userGetFilteredProfiles
+      parameters:
+      - description: The body to filter users profiles
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/UserProfileFilterParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/FilteredProfile'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get users profiles filtered by provided parameters
+      tags:
+      - Training
+  /user/{id}:
+    delete:
+      operationId: userDeleteProfile
+      responses:
+        "200":
+          description: user successfully deleted
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Delete user
+      tags:
+      - Profile
+  /user/{id}/trainings:
+    get:
+      operationId: getUserTrainings
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/training.GroupTraining'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get user's trainings
+      tags:
+      - Calendar
+  /user/contacts/{id}:
+    delete:
+      operationId: removeFromContacts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Remove user from contacts
+      tags:
+      - Messenger
+  /user/profile:
+    put:
+      consumes:
+      - application/json
+      operationId: userUpdateProfile
+      parameters:
+      - description: The body to update user profile
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/UserProfile'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: user profile successfully updated
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Update user profile
+      tags:
+      - Profile
+  /user/profile/{id}:
+    get:
+      operationId: userGetProfile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/UserProfile'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get user profile
+      tags:
+      - Profile
+  /user/requests:
+    post:
+      operationId: sendRequest
+      parameters:
+      - description: The body of a request
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Send friendship or joining a group training request
+      tags:
+      - Messenger
+swagger: "2.0"
